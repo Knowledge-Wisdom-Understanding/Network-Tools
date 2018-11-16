@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Doesnt work right now...
+# Doesnt work right now....
 
 import hashlib
 
