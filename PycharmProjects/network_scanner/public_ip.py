@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 
 import socket
-from urllib2 import urlopen
+from urllib.request import urlopen
 from json import load
 
-#Best No Limit Option
+# Best No Limit Option
 my_ip = load(urlopen('https://api.ipify.org/?format=json'))['ip']
 print("PUBLIC-IP = " + my_ip)
 
-#For Developers
+# For Developers
 # my_ip = load(urlopen('http://httpbin.org/ip'))['origin']
 # print("PUBLIC-IP = " + my_ip)
 
