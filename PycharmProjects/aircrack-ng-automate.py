@@ -2,7 +2,7 @@
 
 import subprocess as s
 
-# Add Path to wordlist and store in variable
+# Add Path to a wordlist and store in variable
 aircrack = "aircrack-ng"
 top4800 = "/usr/share/seclists/Passwords/WiFi-WPA/probable-v2-wpa-top4800.txt"
 bt4 = "/usr/share/seclists/Passwords/bt4-password.txt"
@@ -20,11 +20,11 @@ rockyou = "/usr/share/wordlists/rockyou.txt"
 
 
 
-wordlist = [top4800, bt4, common_creds, dark_c0de, dark_web, fasttrack, fern, metasploit_burnett, metasploit_password, most_popular, open_wall, probable, rockyou]
+wordlists = [top4800, bt4, common_creds, dark_c0de, dark_web, fasttrack, fern, metasploit_burnett, metasploit_password, most_popular, open_wall, probable, rockyou]
 
 pcap_in = raw_input("Please enter the path to your pcap file: ")
 
-for i in wordlist:
+for i in wordlists:
     try:
         s.call("aircrack-ng " + pcap_in + " -w " + i + " -l /root/capture/wifipass.txt", shell=True)
     except IOError:
