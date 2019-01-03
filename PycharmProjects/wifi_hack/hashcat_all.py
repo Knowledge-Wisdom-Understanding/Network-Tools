@@ -19,11 +19,11 @@ rockyou = "/usr/share/wordlists/rockyou.txt"
 
 
 
-wordlist = [top4800, bt4, common_creds, dark_c0de, dark_web, fasttrack, fern, metasploit_burnett, metasploit_password, most_popular, open_wall, probable, rockyou]
+wordlists = [top4800, bt4, common_creds, dark_c0de, dark_web, fasttrack, fern, metasploit_burnett, metasploit_password, most_popular, open_wall, probable, rockyou]
 
 pmkid_in = raw_input("Please enter the path to your pmkid file: ")
 
-for i in wordlist:
+for i in wordlists:
     try:
         s.call("hashcat -m 16800 -a 0 -w 3 --status " + pmkid_in + " " + i + " --force", shell=True)
     except IOError:
