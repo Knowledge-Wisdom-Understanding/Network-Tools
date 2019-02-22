@@ -4,7 +4,7 @@ import requests
 import re
 import urlparse
 
-target_url = 'https://zsecurity.org/'
+target_url = 'https://somewebsite.com'
 target_links = []
 
 
