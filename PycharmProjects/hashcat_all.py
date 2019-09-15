@@ -60,7 +60,8 @@ def main():
     parser.add_argument("-f", "--filehash", help="Path to target hash to try and crack", nargs="+")
     # parser.add_argument("-t", "--type", help="Type of hash for hashcat -m argument. Ex. -t 500")
     args = parser.parse_args()
-    arg_hash = f"""\"{args.filehash[0]}\""""
+    if args.filehash:
+        arg_hash = f"""\"{args.filehash[0]}\""""
 
     def getHash(fhash):
         try:
