@@ -130,7 +130,7 @@ def main():
 
     end = time.time()
     time_elapsed = end - startTimer
-    durationMSG = fg.cyan + f"All Scans Completed for in: " + fg.rs
+    durationMSG = fg.cyan + f"All Scans Completed in: " + fg.rs
     print(durationMSG, display_time(time_elapsed))
 
 
