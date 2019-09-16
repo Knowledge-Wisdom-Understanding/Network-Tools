@@ -58,7 +58,7 @@ def main():
     parser.add_argument("-w", "--wordlists", help="Path to wordlists folder")
     parser.add_argument("-e", "--executable", help="Path to Hashcat executable folder")
     parser.add_argument("-f", "--filehash", help="Path to target hash to try and crack", nargs="+")
-    # parser.add_argument("-t", "--type", help="Type of hash for hashcat -m argument. Ex. -t 500")
+    parser.add_argument("-t", "--type", help="Type of hash for hashcat -m argument. Ex. -t 500")
     args = parser.parse_args()
     if args.filehash:
         arg_hash = f"""\"{args.filehash[0]}\""""
@@ -112,19 +112,44 @@ def main():
             print(fnf_error)
             exit()
 
-    if args.wordlists is None and (args.executable is None) and (args.filehash is None):
+    def run_hashcat2():
+        try:
+            os.chdir(args.executable)
+            for w in walker(args.wordlists):
+                hashcat_cmd = f"hashcat64.exe -m {args.type} -a 0 -w 3 -O --status {arg_hash} {w}"
+                print(cmd_info, hashcat_cmd)
+                call(hashcat_cmd, shell=True)
+        except FileNotFoundError as fnf_error:
+            print(fnf_error)
+            exit()
+
+    if (
+        args.wordlists is None
+        and (args.executable is None)
+        and (args.filehash is None)
+        and (args.type is None)
+    ):
         print("Must supply a hash file")
         parser.print_help(sys.stderr)
-    elif args.wordlists is None and (args.executable is None) and args.filehash:
+    elif (
+        args.wordlists is None
+        and (args.executable is None)
+        and args.filehash
+        and (args.type is None)
+    ):
         args.wordlists = path_to_wordlist_folder
         args.executable = path_to_hashcat_folder
         run_hashcat()
-    elif args.wordlists and (args.executable is None) and args.filehash:
+    elif args.wordlists and (args.executable is None) and args.filehash and (args.type is None):
         args.executable = path_to_hashcat_folder
         run_hashcat()
-    elif args.wordlists and args.executable and args.filehash:
+    elif args.wordlists and args.executable and args.filehash and (args.type is None):
         parser.print_help(sys.stderr)
         run_hashcat()
+    elif args.wordlists is None and (args.executable is None) and args.filehash and args.type:
+        args.wordlists = path_to_wordlist_folder
+        args.executable = path_to_hashcat_folder
+        run_hashcat2()
     else:
         parser.print_help(sys.stderr)
 
