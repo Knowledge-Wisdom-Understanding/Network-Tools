@@ -7,6 +7,11 @@ import signal
 from sty import fg, bg, ef, rs
 import platform
 
+# This script is intended for windows and hasn't been ported to a linux
+# compatible version yet.
+# Also, THis script uses hashid. So make sure if you don't have it installed to do,
+# python3 -m pip install hashid     or depending on python path in windows,
+# py -m pip install hashid      # etc... etc..
 if os.name == "nt" and platform.release() == "10" and platform.version() >= "10.0.14393":
     # Fix ANSI color in Windows 10 version 10.0.14393 (Windows Anniversary Update)
     import ctypes
