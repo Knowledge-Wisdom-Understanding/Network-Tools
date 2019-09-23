@@ -94,11 +94,12 @@ def main():
         return mode_num[0]
 
     def walker(wordlists):
+        extensions = (".txt", ".lst")
         wordlist_files = [
             os.path.join(dirpath, wordlist)
             for dirpath, subdirs, files in os.walk(wordlists, topdown=False)
             for wordlist in files
-            if wordlist.endswith(".txt")
+            if wordlist.endswith(extensions)
         ]
         return wordlist_files
 
